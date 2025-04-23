@@ -1,0 +1,183 @@
+[
+  {
+    "nombre": "Pikachu",
+    "tipo": [
+      "Eléctrico"
+    ],
+    "habilidades": [
+      "Electrostático",
+      "Pararrayos",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2024-08-15",
+        "nombre": "Liga Añil",
+        "region": "Kanto",
+        "posicion": 2
+      },
+      {
+        "fecha": "2024-11-20",
+        "nombre": "Gran Festival",
+        "region": "Kanto",
+        "posicion": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Bulbasaur",
+    "tipo": [
+      "Planta",
+      "Veneno"
+    ],
+    "habilidades": [
+      "Espesura",
+      "Clorofila",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2024-06-01",
+        "nombre": "Copa de Novatos",
+        "region": "Kanto",
+        "posicion": 5
+      }
+    ]
+  },
+  {
+    "nombre": "Charmander",
+    "tipo": [
+      "Fuego"
+    ],
+    "habilidades": [
+      "Mar Llamas",
+      "Sequía",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2025-01-10",
+        "nombre": "Desafío Magma",
+        "region": "Johto",
+        "posicion": 3
+      }
+    ]
+  },
+  {
+    "nombre": "Squirtle",
+    "tipo": [
+      "Agua"
+    ],
+    "habilidades": [
+      "Torrente",
+      "Llovizna",
+      null,
+      null
+    ],
+    "torneos": []
+  },
+  {
+    "nombre": "Jigglypuff",
+    "tipo": [
+      "Normal",
+      "Hada"
+    ],
+    "habilidades": [
+      "Gran Encanto",
+      "Tenacidad",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2024-09-25",
+        "nombre": "Concurso Encanto",
+        "region": "Hoenn",
+        "posicion": 1
+      }
+    ]
+  },
+  {
+    "nombre": "Piplup",
+    "tipo": [
+      "Agua"
+    ],
+    "habilidades": [
+      "Torrente",
+      "Competitivo",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2025-03-15",
+        "nombre": "Liga Sinnoh",
+        "region": "Sinnoh",
+        "posicion": 4
+      }
+    ]
+  },
+  {
+    "nombre": "Chikorita",
+    "tipo": [
+      "Planta"
+    ],
+    "habilidades": [
+      "Espesura",
+      "Defensa Hoja",
+      null,
+      null
+    ],
+    "torneos": []
+  },
+  {
+    "nombre": "Vulpix",
+    "tipo": [
+      "Fuego"
+    ],
+    "habilidades": [
+      "Absorbe Fuego",
+      "Sequía",
+      null,
+      null
+    ],
+    "torneos": [
+      {
+        "fecha": "2024-12-01",
+        "nombre": "Festival de Fuego",
+        "region": "Kanto",
+        "posicion": 2
+      }
+    ]
+  },
+  {
+    "nombre": "Lapras",
+    "tipo": [
+      "Agua",
+      "Hielo"
+    ],
+    "habilidades": [
+      "Absorber Agua",
+      "Caparazón",
+      "Hidratación",
+      null
+    ]
+  },
+  {
+    "nombre": "Butterfree",
+    "tipo": [
+      "Bicho",
+      "Volador"
+    ],
+    "habilidades": [
+      "Ojo Compuesto",
+      "Cromolente",
+      null,
+      null
+    ],
+    "torneos": []
+  }
+]

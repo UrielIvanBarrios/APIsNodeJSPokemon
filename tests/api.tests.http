@@ -1,0 +1,41 @@
+GET http://127.0.0.1:3002
+
+###
+GET http://127.0.0.1:3002/obtenerPokemones
+
+###
+POST http://127.0.0.1:3002/agregarPokemon
+Content-Type: application/json
+
+{
+  "nombre": "Lapras",
+  "tipo": [
+    "Agua",
+    "Hielo"
+  ],
+  "habilidades": [
+    "Absorber Agua",
+    "Caparazón",
+    "Hidratación",
+    null
+  ]
+}
+
+###
+POST http://127.0.0.1:3002/agregarPokemon
+Content-Type: application/json
+
+{
+  "nombre": "Butterfree",
+  "tipo": [
+    "Bicho",
+    "Volador"
+  ],
+  "habilidades": [
+    "Ojo Compuesto",
+    "Cromolente",
+    null,
+    null
+  ],
+  "torneos": []
+}
