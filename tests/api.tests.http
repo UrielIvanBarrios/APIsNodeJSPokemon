@@ -22,26 +22,10 @@ Content-Type: application/json
 }
 
 ###
-POST http://127.0.0.1:3002/agregarPokemon
-Content-Type: application/json
-
-{
-  "nombre": "Butterfree",
-  "tipo": [
-    "Bicho",
-    "Volador"
-  ],
-  "habilidades": [
-    "Ojo Compuesto",
-    "Cromolente",
-    null,
-    null
-  ],
-  "torneos": []
-}
-
-###
 GET http://127.0.0.1:3002/obtenerPokemonesPorTipo/dragon
 
 ###
 GET http://127.0.0.1:3002/obtenerPokemonesPorTipo/agua
+
+###
+GET http://127.0.0.1:3002/usarPokemon/Lapras

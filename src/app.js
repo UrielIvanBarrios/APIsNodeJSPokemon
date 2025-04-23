@@ -3,7 +3,7 @@ import express from 'express';
 import { get } from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { añadirPokemon, getPokemons, getPokemonsPorTipo } from './service.js';
+import { añadirPokemon, getPokemons, getPokemonsPorTipo, usarHabilidadAleatoria } from './service.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3002;
@@ -17,10 +17,13 @@ const url = path.join(__dirname, "../db/smartrotom.json")
 //Middlewares 
 app.use(express.json());
 
+app.use('/img', express.static(path.join(__dirname, "../img")));
+
 
 
 app.get("/", (req, res) => {
-    const responseText = `<h1>Soy un Pokemon!!</h1>`;
+    const imagePath = '/img/pokemon.webp';
+    const responseText = `<img src="${imagePath}" alt="Logo Pokemon" style="max-width: 100vw; height: auto;">`;
     res.status(200).send(responseText);
     // res.json({ message: "Mensaje desde App Pokemon" });
 
@@ -57,9 +60,16 @@ app.get("/obtenerPokemonesPorTipo/:tipo", async (req,res) => {
     }
 });
 
-app.get("/usarPokemon/:nombre",(req,res) => {
+app.get("/usarPokemon/:nombre",async(req,res) => {
     const nombrePokemon = req.params.nombre;
-    const responseText = `Pokemon ${nombrePokemon} intenta usar habilidad...`;
+    try{
+        const habilidadAleatoria = await usarHabilidadAleatoria(url,nombrePokemon);
+        const responseText = habilidadAleatoria ? `<h1>El pokemon ${nombrePokemon} ha usado la habilidad: ${habilidadAleatoria}.</h1>` : `<h1>El pokemon ${nombrePokemon} intento usar una habilidad, ¡Pero fallo!</h1>`;
+        res.status(200).send(responseText);
+    }catch(error){
+        console.error("Error al usar habilidad del pokemon: ",error);
+        res.status(404).json({message:"Pokemon no encontrado"});
+    }
 })
 
 

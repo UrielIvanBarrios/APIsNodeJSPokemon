@@ -2,17 +2,21 @@ import {readFile, writeFile} from 'fs/promises';
 
 const cleanPokemonsList = (pokemons) => pokemons.map(pokemon => ({pokemonName: pokemon.nombre, pokemonType: pokemon.tipo}))
 
+const llamarSmartrotom = async(path) => {
+    const pokemones = await readFile(path, {encoding : "utf8"})
+    const pokemonesJson = JSON.parse(pokemones);
+    return pokemonesJson;
+}
+
 const getPokemons = async(path) => {
-    const pokemons = await readFile(path, {encoding : "utf8"})
-    const pokemonsJson = JSON.parse(pokemons);
+    const pokemonsJson = await llamarSmartrotom(path);
     const listaPokemons = cleanPokemonsList(pokemonsJson);
     return listaPokemons;
 
 }
 
 const getPokemonsPorTipo = async(path,tipo) => {
-    const pokemons = await readFile(path, {encoding : "utf8"});
-    const pokemonsJson = JSON.parse(pokemons);
+    const pokemonsJson = await llamarSmartrotom(path);
     const listaPokemons = pokemonsJson.filter(pokemon => pokemon.tipo.some(t => t.toLowerCase() === tipo.toLowerCase()))
     return cleanPokemonsList(listaPokemons);
 }
@@ -31,8 +35,7 @@ const validarExistePokemon = async(pokemones, pokemon) => {
 }
 
 const añadirPokemon = async(path, pokemon) => {
-    const pokemonesJson = await readFile(path, {encoding : "utf8"})
-    const pokemones = JSON.parse(pokemonesJson)
+    const pokemones = await llamarSmartrotom(path);
     const pokemonExiste = await validarExistePokemon(pokemones, pokemon)
     const seAnadio = false;
     if (!pokemonExiste && esPokemonValido(pokemon)) {
@@ -44,4 +47,16 @@ const añadirPokemon = async(path, pokemon) => {
     return seAnadio;
 }
 
-export {getPokemons, añadirPokemon, getPokemonsPorTipo};
+const usarHabilidadAleatoria = async(path,nombrePokemon) => {
+    const pokemones = await llamarSmartrotom(path);
+    const pokemon = pokemones.find(p => p.nombre.toLowerCase() === nombrePokemon.toLowerCase())
+    if (pokemon) {
+        const {habilidades} = pokemon;
+        const habilidadAleatoria = habilidades[Math.floor(Math.random() * habilidades.length)];
+        return habilidadAleatoria;
+    }else{
+        throw new Error("Pokemon no encontrado");
+    }
+}
+
+export {getPokemons, añadirPokemon, getPokemonsPorTipo, usarHabilidadAleatoria};
