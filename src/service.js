@@ -7,6 +7,14 @@ const getPokemons = async(path) => {
     const pokemonsJson = JSON.parse(pokemons);
     const listaPokemons = cleanPokemonsList(pokemonsJson);
     return listaPokemons;
+
+}
+
+const getPokemonsPorTipo = async(path,tipo) => {
+    const pokemons = await readFile(path, {encoding : "utf8"});
+    const pokemonsJson = JSON.parse(pokemons);
+    const listaPokemons = pokemonsJson.filter(pokemon => pokemon.tipo.some(t => t.toLowerCase() === tipo.toLowerCase()))
+    return cleanPokemonsList(listaPokemons);
 }
 
 const esPokemonValido = (pokemon) => {
@@ -17,17 +25,15 @@ const esPokemonValido = (pokemon) => {
             Array.isArray(pokemon.torneos));      // Si existe, debe ser array
 };
 
-const validarExistePokemon = async(path, pokemon) => {
+const validarExistePokemon = async(pokemones, pokemon) => {
     const nombrePokemon = pokemon.nombre.toLowerCase()
-    const pokemonesJson = await readFile(path, {encoding : "utf8"})
-    const pokemones = JSON.parse(pokemonesJson)
     return pokemones.some(p => p.nombre.toLowerCase() === nombrePokemon)
 }
 
 const añadirPokemon = async(path, pokemon) => {
     const pokemonesJson = await readFile(path, {encoding : "utf8"})
     const pokemones = JSON.parse(pokemonesJson)
-    const pokemonExiste = await validarExistePokemon(path, pokemon)
+    const pokemonExiste = await validarExistePokemon(pokemones, pokemon)
     const seAnadio = false;
     if (!pokemonExiste && esPokemonValido(pokemon)) {
         pokemones.push(pokemon)
@@ -38,4 +44,4 @@ const añadirPokemon = async(path, pokemon) => {
     return seAnadio;
 }
 
-export {getPokemons, añadirPokemon};
+export {getPokemons, añadirPokemon, getPokemonsPorTipo};

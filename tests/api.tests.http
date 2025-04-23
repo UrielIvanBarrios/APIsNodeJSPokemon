@@ -39,3 +39,9 @@ Content-Type: application/json
   ],
   "torneos": []
 }
+
+###
+GET http://127.0.0.1:3002/obtenerPokemonesPorTipo/dragon
+
+###
+GET http://127.0.0.1:3002/obtenerPokemonesPorTipo/agua

@@ -3,7 +3,7 @@ import express from 'express';
 import { get } from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { añadirPokemon, getPokemons } from './service.js';
+import { añadirPokemon, getPokemons, getPokemonsPorTipo } from './service.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3002;
@@ -41,6 +41,26 @@ app.post("/agregarPokemon", async(req, res) => {
         res.status(400).json({message: "Ya existe un pokemon con ese nombre"});
     }
 });
+
+app.get("/obtenerPokemonesPorTipo/:tipo", async (req,res) => {
+    try{
+        const tipoPokemon = req.params.tipo;
+        const pokemonesFiltrados = await getPokemonsPorTipo(url, tipoPokemon);
+        if (pokemonesFiltrados.length > 0) {
+            res.status(200).json(pokemonesFiltrados);
+        }else{
+            res.status(404).json({message: "No se encontraron pokemones de ese tipo"});
+        }
+    }catch(error){
+        console.error("Error al obtener el pokemon del tipo: ",error);
+        res.status(500).json({message: "Error interno del servidor"});
+    }
+});
+
+app.get("/usarPokemon/:nombre",(req,res) => {
+    const nombrePokemon = req.params.nombre;
+    const responseText = `Pokemon ${nombrePokemon} intenta usar habilidad...`;
+})
 
 
 app.listen(PORT, () => console.log(`Poke App is listening on http://${HOST}:${PORT}`));
